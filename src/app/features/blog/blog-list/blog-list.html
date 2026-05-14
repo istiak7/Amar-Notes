@@ -1,0 +1,12 @@
+<div class="blog-list">
+  <header class="blog-list__header">
+    <h1 class="blog-list__title">Blog</h1>
+    <p class="blog-list__subtitle">Thoughts on software, systems, and engineering.</p>
+  </header>
+
+  <div class="blog-list__posts">
+    @for (post of posts(); track post.id) {
+      <app-post-card [post]="post" />
+    }
+  </div>
+</div>

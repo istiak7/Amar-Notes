@@ -1,0 +1,41 @@
+@if (post) {
+  <article class="post">
+    <a class="post__back" routerLink="/blog">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+        <path fill-rule="evenodd" d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z" clip-rule="evenodd" />
+      </svg>
+      Back to Blog
+    </a>
+
+    <header class="post__header">
+      <div class="post__tags">
+        @for (tag of post.tags; track tag) {
+          <span class="post__tag" [style.background-color]="post.coverColor + '22'" [style.color]="post.coverColor">{{ tag }}</span>
+        }
+      </div>
+      <h1 class="post__title">{{ post.title }}</h1>
+      <p class="post__excerpt">{{ post.excerpt }}</p>
+      <div class="post__meta">
+        <div class="post__author-avatar" [style.background-color]="post.coverColor">
+          {{ post.author.charAt(0) }}
+        </div>
+        <div>
+          <span class="post__author-name">{{ post.author }}</span>
+          <div class="post__meta-row">
+            <span>{{ post.publishedAt | date: 'MMMM d, yyyy' }}</span>
+            <span class="post__dot">·</span>
+            <span>{{ post.readTime }} min read</span>
+          </div>
+        </div>
+      </div>
+      <div class="post__divider" [style.background-color]="post.coverColor"></div>
+    </header>
+
+    <div class="post__content prose" [innerHTML]="post.content"></div>
+  </article>
+} @else {
+  <div class="post__not-found">
+    <p>Post not found.</p>
+    <a routerLink="/blog">Back to Blog</a>
+  </div>
+}

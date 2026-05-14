@@ -1,6 +1,6 @@
 import { Injectable, signal, computed } from '@angular/core';
 
-export interface Note {
+export type Note = {
   id: string;
   title: string;
   content: string;
@@ -10,7 +10,7 @@ export interface Note {
   archived: boolean;
   createdAt: Date;
   updatedAt: Date;
-}
+};
 
 export type NoteFilter = 'all' | 'starred' | 'archived';
 

@@ -1,0 +1,25 @@
+.blog-list {
+  max-width: 760px;
+
+  &__header {
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  &__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

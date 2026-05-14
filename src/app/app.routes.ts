@@ -9,6 +9,10 @@ export const routes: Routes = [
       {
         path: 'notes',
         loadChildren: () => import('./features/notes/notes.routes').then(m => m.notesRoutes)
+      },
+      {
+        path: 'blog',
+        loadChildren: () => import('./features/blog/blog.routes').then(m => m.blogRoutes)
       }
     ]
   }
