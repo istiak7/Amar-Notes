@@ -1,0 +1,38 @@
+<div class="notes">
+  <header class="notes__header">
+    <h1 class="notes__title">{{ filterLabels[filter()] }}</h1>
+    <div class="notes__search">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+        <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+      </svg>
+      <input
+        type="text"
+        placeholder="Search notes..."
+        (input)="onSearch($event)"
+      />
+    </div>
+  </header>
+
+  @if (notes().length === 0) {
+    <div class="notes__empty">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="52" height="52">
+        <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75-6.75a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clip-rule="evenodd" />
+        <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+      </svg>
+      <p>No notes found</p>
+      <span>Click "+ New Note" to create your first note</span>
+    </div>
+  } @else {
+    <div class="notes__grid">
+      @for (note of notes(); track note.id) {
+        <app-note-card
+          [note]="note"
+          (starToggled)="onToggleStar($event)"
+          (deleted)="onDelete($event)"
+          (archived)="onArchive($event)"
+          (unarchived)="onUnarchive($event)"
+        />
+      }
+    </div>
+  }
+</div>
